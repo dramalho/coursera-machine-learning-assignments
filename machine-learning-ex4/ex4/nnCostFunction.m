@@ -59,7 +59,15 @@ for idx = 1:m
   endfor
 endfor
 
-J *= (1/m)
+J *= (1/m);
+
+% Regularization
+J += (lambda/(2 * m)) * ...
+        ( ...
+            sum(sum(Theta1(:, 2:end) .^ 2)) + ...
+            sum(sum(Theta2(:, 2:end) .^ 2)) ...
+        );
+
 
 %
 % Part 2: Implement the backpropagation algorithm to compute the gradients
@@ -77,6 +85,13 @@ J *= (1/m)
 %               over the training examples if you are implementing it for the
 %               first time.
 %
+
+delta_z2 = layer_2 .- y
+
+% delta_z1 =
+
+
+
 % Part 3: Implement regularization with the cost function and gradients.
 %
 %         Hint: You can implement this around the code for
